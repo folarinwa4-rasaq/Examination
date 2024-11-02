@@ -1,0 +1,35 @@
+#res-main {
+    display: block;
+    text-align: center;
+}
+
+table,
+td,
+tr {
+    border: 2px solid;
+    border-collapse: collapse;
+    width: 700px;
+}
+
+table {
+    margin-left: 230px;
+    height: 200px;
+}
+
+#res-main h1 {
+    text-transform: capitalize;
+}
+
+.end {
+    text-align: end;
+}
+
+.end-exam {
+    height: 40px;
+    border: none;
+    background-color: rgba(41, 22, 110, 1);
+    color: white;
+    padding: 10px;
+    margin-bottom: -500px;
+    margin-top: 20px;
+}

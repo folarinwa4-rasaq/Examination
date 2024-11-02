@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <img class="laj-logo" src="{% static 'images/Lajfort-logo.png' %}" alt="">
+            <h2 class="head-text">WELCOME TO LAJFORT EXAMINATION WEBSITE</h2>
+        </nav>
+    </header>
+    <main class="sign-main">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h1>Login Now</h1>
+            <div class="register-form">
+                {% for m in messages %}
+                <h3 style="color: red; text-align: center;">{{m}}</h3>
+                {% endfor %}
+                <label for="name">Username</label><br>
+                <input type="text" name="name" placeholder="input Your Name" id="name"><br>
+                <label for="Class">Class</label><br>
+                <input type="text" name="class" placeholder="input Your Class e.g jss1,sss1" id="Class"><br>
+                <label for="Password">Password</label><br>
+                <input type="Password" name="password" placeholder="input Your Password" id="Password"><br>
+                <label for="Password2">RepeatPassword</label><br>
+                <input type="Password" name="password2" placeholder="input Your Password" id="Password2"><br>
+                <input type="submit" class="sign-btn" value="Login">
+                <h5>Already have an account?<a href="login">Login now</a></h5>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <div class="footer">
+            <div class="foot-left">
+                <img src="{% static 'images/Lajfort-logo.png' %}" class="foot-logo" alt="">
+            </div>
+            <div class="foot-right">
+                <div class="foot-quick">
+                    <a class="foot-link">Quick Links</a>
+                    <h5>Contact Us</h5>
+                    <h5>About Us</h5>
+                </div>
+                <div class="foot-quick">
+                    <a class="foot-link">Others</a>
+                    <h5>User FAQs</h5>
+                    <h5>Contact Us</h5>
+                    <h5>Legal</h5>
+                    <h5>Privacy Policy</h5>
+                    <h5>Terms and Conditions</h5>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="copyright">
+            <h4>Copyright &copy; 2024.All rights reservered.</h4>
+            <div>
+                <img src="{% static 'images/Lajfort-foot-youtube.png' %}" class="social" alt="">
+                <img src="{% static 'images/Lajfort-foot-instagram.png' %}" class="social" alt="">
+                <img src="{% static 'images/Lajfort-foot-facebook.png' %}" class="social" alt="">
+                <img src="{% static 'images/Lajfort-foot-twitter.png' %}" class="social" alt="">
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

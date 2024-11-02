@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examination</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/exam.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <img class="laj-logo" src="{% static 'images/Lajfort-logo.png' %}" alt="">
+            <h2 class="exam-title">{{exam.title}}</h2>
+            <div class="timer">
+                <h2 id="timer"></h2>
+            </div>
+        </nav>
+    </header>
+    <main class="exam">
+        <ol>
+            {% for q in question %}
+            <hr>
+            <form action="" name="exam-form" method="post">
+                {% csrf_token %}
+                <div>
+                    <li class="qst">{{q.question}}</li>
+                    <input type="hidden" name="answer" class="answer" value="{{q.solution}}">
+                    <h4 class="opt"><input type="checkbox" name="opt" value="{{q.option1}}" id="input"> {{q.option1}} </h4>
+                    <h4 class="opt"><input type="checkbox" name="opt" value="{{q.option2}}" id="input"> {{q.option2}} </h4>
+                    <h4 class="opt"><input type="checkbox" name="opt" value="{{q.option3}}" id="input"> {{q.option3}} </h4>
+                    <h4 class="opt"><input type="checkbox" name="opt" value="{{q.option4}}" id="input"> {{q.option4}} </h4>
+                </div>
+                {% endfor %}
+                <hr>
+                <div class="end">
+                    <a href=""><input type="submit" class="end-exam" value="Submit Exam"></a>
+                </div>
+            </form>
+        </ol>
+    </main>
+    <footer>
+        <div class="footer">
+            <div class="foot-left">
+                <img src="{% static 'images/Lajfort-logo.png' %}" class="foot-logo" alt="">
+            </div>
+            <div class="foot-right">
+                <div class="foot-quick">
+                    <a class="foot-link">Quick Links</a>
+                    <h5>Contact Us</h5>
+                    <h5>About Us</h5>
+                </div>
+                <div class="foot-quick">
+                    <a class="foot-link">Others</a>
+                    <h5>User FAQs</h5>
+                    <h5>Contact Us</h5>
+                    <h5>Legal</h5>
+                    <h5>Privacy Policy</h5>
+                    <h5>Terms and Conditions</h5>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="copyright">
+            <h4>Copyright &copy; 2024.All rights reservered.</h4>
+            <div>
+                <img src="{% static 'images/Lajfort-foot-youtube.png' %}" class="social" alt="">
+                <img src="{% static 'images/Lajfort-foot-instagram.png' %}" class="social" alt="">
+                <img src="{% static 'images/Lajfort-foot-facebook.png' %}" class="social" alt="">
+                <img src="{% static 'images/Lajfort-foot-twitter.png' %}" class="social" alt="">
+            </div>
+        </div>
+    </footer>
+    <script>
+        const endTime = new Date("{{ end_time }}").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = endTime - now;
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "EXAM OVER";
+                document.getElementById("exam-form").submit();
+                redirectUrl = "preview/examination/result/{{exam.id}}"
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <img class="laj-logo" src="{% static 'images/Lajfort-logo.png' %}" alt="">
+        </nav>
+    </header>
+    <main id="res-main">
+        <h1>{{request.user}} result for {{exam.title}}</h1>
+        <table>
+            <tr>
+                <td>Total Question:</td>
+                <td>{{total_question}}</td>
+            </tr>
+            <tr>
+                <td>You Got:</td>
+                <td>{{result.score}}</td>
+            </tr>
+            <tr>
+                <td>You Failed:</td>
+                <td>{{you_failed}}</td>
+            </tr>
+            <tr>
+                <td>percentage:</td>
+                <td>{{percentage}} %</td>
+            </tr>
+        </table>
+        <div class="end">
+            <a href="/"><input type="submit" class="end-exam" value="End Exam"></a>
+        </div>
+    </main>
+    <footer>
+        <div class="footer">
+            <div class="foot-left">
+                <img src="{% static 'images/Lajfort-logo.png' %}" class="foot-logo" alt="">
+            </div>
+            <div class="foot-right">
+                <div class="foot-quick">
+                    <a class="foot-link">Quick Links</a>
+                    <h5>Contact Us</h5>
+                    <h5>About Us</h5>
+                </div>
+                <div class="foot-quick">
+                    <a class="foot-link">Others</a>
+                    <h5>User FAQs</h5>
+                    <h5>Contact Us</h5>
+                    <h5>Legal</h5>
+                    <h5>Privacy Policy</h5>
+                    <h5>Terms and Conditions</h5>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="copyright">
+            <h4>Copyright &copy; 2024.All rights reservered.</h4>
+            <div>
+                <img src="{% static 'images/Lajfort-foot-youtube.png' %}" class="social" alt="">
+                <img src="{% static 'images/Lajfort-foot-instagram.png' %}" class="social" alt="">
+                <img src="{% static 'images/Lajfort-foot-facebook.png' %}" class="social" alt="">
+                <img src="{% static 'images/Lajfort-foot-twitter.png' %}" class="social" alt="">
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

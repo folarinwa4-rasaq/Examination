@@ -1,0 +1,58 @@
+.exam {
+    display: block;
+}
+
+.opt {
+    margin: 2px;
+}
+
+#input {
+    color: rgba(41, 22, 110, 1);
+    background-color: rgba(41, 22, 110, 1);
+}
+
+.qst {
+    margin-bottom: 10px;
+    text-align: start;
+}
+
+.end {
+    text-align: end;
+}
+
+.end-exam {
+    height: 40px;
+    border: none;
+    background-color: rgba(41, 22, 110, 1);
+    color: white;
+    padding: 10px;
+}
+
+.exam-title {
+    margin-right: 500px;
+    font-weight: 800;
+    font-size: 38px;
+    text-transform: uppercase;
+}
+
+.answer {
+    display: none;
+}
+
+.timer {
+    display: flex;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 35px;
+    margin-right: 50px;
+    margin-top: -10px;
+    margin-left: -450px;
+    background-color: rgba(41, 22, 110, 1);
+    color: white;
+}
+
+
+/*#timer {
+    width: 100px;
+}*/

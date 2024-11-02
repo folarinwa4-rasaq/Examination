@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    font-family: Arial;
+}
+
+
+/*main*/
+
+.top {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+main {
+    padding-left: 50px;
+    padding-right: 50px;
+    display: grid;
+    grid-template-columns: 350px 350px 350px;
+    row-gap: 50px;
+    column-gap: 50px;
+}
+
+.subject {
+    width: 350px;
+    height: 250px;
+    box-shadow: 2px 10px 28px 0px rgba(41, 22, 110, 0.64);
+    background-color: white;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.preview {
+    width: 100px;
+    height: 35px;
+    background-color: rgba(41, 22, 110, 1);
+    color: white;
+    border: none;
+    margin-top: 50px;
+}
+
+
+/*header*/
+
+header {
+    background-color: rgba(255, 253, 199, 1);
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav h1 {
+    text-transform: capitalize;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.laj-logo {
+    height: 100px;
+}
+
+
+/*footer*/
+
+footer {
+    background-color: rgba(41, 22, 110, 1);
+    color: white;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.foot-link {
+    color: white;
+}
+
+.foot-logo {
+    height: 150px;
+}
+
+.foot-ul {
+    display: flex;
+    margin-right: 0px;
+}
+
+.foot-li {
+    list-style: none;
+    margin-left: 10px;
+}
+
+.foot-left {
+    display: flex;
+}
+
+.foot-right {
+    display: flex;
+    align-items: top;
+    justify-content: space-between;
+}
+
+.foot-quick {
+    margin-right: 50px;
+    margin-top: 35px;
+}
+
+.copyright {
+    padding-top: -1px;
+    padding-bottom: 1px;
+    padding-left: 75px;
+    padding-right: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social {
+    margin-right: 20px;
+    margin-top: 5px;
+    height: 20px;
+}
