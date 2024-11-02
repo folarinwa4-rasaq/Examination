@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.utils import timezone
 from datetime import timedelta,datetime
+import math
 
 # Create your views here.
 
@@ -67,7 +68,8 @@ def result(request,pk):
     exam = Exam.objects.get(id=pk)
     result = Result.objects.filter(exam=exam,student=request.user).last()
     total_question = exam.total_question
-    percent = result.score/total_question * 100
+    percentage = result.score/total_question * 100
+    percent = math.ceil(percentage)
     you_failed = total_question - result.score
     return render(request, 'result.html',{'result':result,'percentage':percent,'total_question':total_question,'you_failed':you_failed,'exam':exam})
 
