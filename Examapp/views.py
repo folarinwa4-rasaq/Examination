@@ -7,6 +7,9 @@ from django.contrib.auth import logout
 from django.utils import timezone
 from datetime import timedelta,datetime
 import math
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -15,22 +18,30 @@ def home(request):
     user = request.user
     if Student.objects.filter(student=request.user,clas='JSS1'):
         exam = Exam.objects.filter(clas='JSS1')
+        clas = 'JSS1'
     else:
         if Student.objects.filter(student=request.user,clas='JSS2'):
             exam = Exam.objects.filter(clas='JSS2')
+            clas = 'JSS2'
         else:
             if Student.objects.filter(student=request.user,clas='JSS3'):
                 exam = Exam.objects.filter(clas='JSS3')
+                clas = 'JSS3'
             else:
                 if Student.objects.filter(student=request.user,clas='SSS1'):
                     exam = Exam.objects.filter(clas='SSS1')
+                    clas = 'SSS1'
                 else:
                     if Student.objects.filter(student=user,clas='SSS2'):
                         exam = Exam.objects.filter(clas='SSS2')
+                        clas = 'SSS2'
                     else:
                         if Student.objects.filter(student=request.user,clas='SSS3'):
                             exam = Exam.objects.filter(clas='SSS3')
-    return render(request, 'home.html',{'exam':exam})
+                            clas = 'SSS3'
+                        else:
+                            return render(request, 'home.html',{'exam':exam,'clas':clas})
+    return render(request, 'home.html',{'exam':exam,'clas':clas})
 
 @login_required(login_url='login')
 def preview(request,pk):
@@ -42,26 +53,22 @@ def preview(request,pk):
 @login_required(login_url='login')
 def examination(request,pk):
     exam = Exam.objects.get(id=pk)
-    question = Question.objects.filter(exam=exam)
+    p = Paginator(Question.objects.filter(exam=exam), 1)
+    page = request.GET.get('page')
+    exam_p = p.get_page(page)
+    
     current_time = timezone.now()
     start_time = datetime.now()
     end_time = start_time + timedelta(minutes=exam.duration)
     if request.method == 'POST':
-        opt= request.POST.get('opt')
-        answer = request.POST.get('answer')
-        total = 0
-        if opt == answer:
-            total +=1
-            answer = Result(student=request.user,score=total,exam=exam)
-            answer.save()
-        elif opt == '':
-            return redirect('result',pk=exam.id)
-        else:
-            total = 0+0
-            answer = Result(student=request.user,score=total,exam=exam)
-            answer.save()
-        return redirect('result',pk=exam.id)
-    return render(request, 'exam.html',{'question':question,'exam':exam,'current_time':current_time,'end_time':end_time.isoformat()})
+        score = request.POST.get('score')#.value()
+        id = exam.id
+        answer = Result(student=request.user,score=score,exam=exam)
+        answer.save()
+        return redirect('result',pk=id)
+        
+    else:
+        return render(request, 'exam.html',{'exam':exam,'current_time':current_time,'end_time':end_time.isoformat(),'exam_p':exam_p})
 
 @login_required(login_url='login')
 def result(request,pk):

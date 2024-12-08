@@ -20,12 +20,25 @@
     text-align: end;
 }
 
+p {
+    width: 1000px;
+    text-align: start;
+    word-wrap: break-word;
+}
+
+h4 {
+    width: 800px;
+    text-align: start;
+    word-wrap: break-word;
+}
+
 .end-exam {
     height: 40px;
     border: none;
     background-color: rgba(41, 22, 110, 1);
     color: white;
     padding: 10px;
+    cursor: pointer;
 }
 
 .exam-title {
@@ -45,14 +58,97 @@
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 35px;
-    margin-right: 50px;
     margin-top: -10px;
     margin-left: -450px;
     background-color: rgba(41, 22, 110, 1);
     color: white;
 }
 
+.previous,
+.next {
+    height: 40px;
+    padding: 10px;
+    background-color: rgba(41, 22, 110, 1);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 
-/*#timer {
-    width: 100px;
-}*/
+.e-div {
+    margin-bottom: 25px;
+}
+
+.next {
+    margin-left: 62.5rem;
+}
+
+.previous:hover,
+.next:hover,
+.end-exam:hover {
+    opacity: 0.8;
+}
+
+.previous:active,
+.next:active,
+.end-exam:active {
+    opacity: 0.6;
+}
+
+
+/*responsiveness*/
+
+@media (min-width:1440px) {
+    .next {
+        margin-left: 1100px;
+    }
+}
+
+@media (min-width:1024px) and (max-width:1439px) {
+    .next {
+        margin-left: 1000px;
+    }
+}
+
+@media (max-width:1440px) {
+    .next {
+        margin-left: 950px;
+    }
+}
+
+@media (min-width:768px) and (max-width:1023px) {
+    .next {
+        margin-left: 400px;
+    }
+}
+
+@media (max-width:320px) {
+    .next {
+        margin-left: 50px;
+    }
+}
+
+@media (max-width:767px) {
+    .next {
+        margin-left: 250px;
+    }
+}
+
+@media (min-width:768px) and (max-width:1023px) {
+    p {
+        width: 650px;
+        text-align: start;
+    }
+    h4 {
+        width: 450px;
+    }
+}
+
+@media (max-width:767px) {
+    p {
+        width: 300px;
+        text-align: start;
+    }
+    h4 {
+        width: 200px;
+    }
+}

@@ -32,4 +32,13 @@ input {
     border: none;
     background-color: rgba(41, 22, 110, 1);
     color: white;
+    cursor: pointer;
+}
+
+.sign-btn:hover {
+    opacity: 0.8;
+}
+
+.sign-btn:active {
+    opacity: 0.6;
 }

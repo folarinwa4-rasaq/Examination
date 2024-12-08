@@ -22,36 +22,13 @@
             <h2>DESCRIPTION</h2>
             <p>{{exam.description}}</p>
             <h4>Subject:<span>{{exam.subject}}</span></h4>
+            <h4>total question:<span>{{exam.total_question}} questions</span></h4>
             <h4>Duration:<span>{{end}} Hours</span></h4>
             <a href="/"><input type="submit" class="back" value="Back"></a>
             <a href="examination/{{exam.id}}"><input type="submit" class="start" value="Start Exam"></a>
         </div>
     </main>
     <footer>
-        <div class="footer">
-            <div class="foot-left">
-                <img src="{% static 'images/Lajfort-logo.png' %}" class="foot-logo" alt="">
-                <ul class="foot-ul">
-                    <li class="foot-li"><a href="/" class="foot-link">Home</a></li>
-                </ul>
-            </div>
-            <div class="foot-right">
-                <div class="foot-quick">
-                    <a class="foot-link">Quick Links</a>
-                    <h5>Contact Us</h5>
-                    <h5>About Us</h5>
-                </div>
-                <div class="foot-quick">
-                    <a class="foot-link">Others</a>
-                    <h5>User FAQs</h5>
-                    <h5>Contact Us</h5>
-                    <h5>Legal</h5>
-                    <h5>Privacy Policy</h5>
-                    <h5>Terms and Conditions</h5>
-                </div>
-            </div>
-        </div>
-        <hr>
         <div class="copyright">
             <h4>Copyright &copy; 2024.All rights reservered.</h4>
             <div>

@@ -1,6 +1,8 @@
 body {
     margin: 0;
     font-family: Arial;
+    padding-bottom: 100px;
+    text-transform: capitalize;
 }
 
 
@@ -36,6 +38,15 @@ main {
     color: white;
     border: none;
     margin-top: 50px;
+    cursor: pointer;
+}
+
+.preview:hover {
+    opacity: 0.8;
+}
+
+.preview:active {
+    opacity: 0.6;
 }
 
 
@@ -44,17 +55,21 @@ main {
 header {
     background-color: rgba(255, 253, 199, 1);
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    margin-right: 50px;
 }
 
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-right: 50px;
 }
 
 nav h1 {
     text-transform: capitalize;
+    font-size: 44px;
+    font-weight: 500;
 }
 
 a {
@@ -74,6 +89,10 @@ footer {
     background-color: rgba(41, 22, 110, 1);
     color: white;
     width: 100%;
+    margin-top: 50px;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
     margin-top: 50px;
 }
 
@@ -130,4 +149,35 @@ footer {
     margin-right: 20px;
     margin-top: 5px;
     height: 20px;
+}
+
+
+/*responsiveness*/
+
+@media (min-width:1440px) {
+    main {
+        grid-template-columns: 350px 350px 350px 350px;
+        place-content: center;
+    }
+}
+
+@media (min-width:1024px) and (max-width:1439px) {
+    main {
+        grid-template-columns: 350px 350px 350px;
+        place-content: center;
+    }
+}
+
+@media (min-width:768px) and (max-width:1023px) {
+    main {
+        grid-template-columns: 350px 350px;
+        place-content: center;
+    }
+}
+
+@media (max-width:767px) {
+    main {
+        grid-template-columns: 350px;
+        place-content: center;
+    }
 }

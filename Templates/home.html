@@ -17,13 +17,14 @@
         </nav>
     </header>
     {% if exam %}
-    <h1 class="top">Available Tests for {% for m in exam %} {{m.clas}} {% endfor %} Students</h1>
+    <h1 class="top">Available Tests for {{ clas }} Students</h1>
     <main>
         {% for exam in exam %}
         <div class="subject">
             <h3>{{exam.title}}</h3>
             <div>
-                <p>{{exam.description|truncatechars:50}}</p>
+                <p>{{exam.description|truncatechars:45}}</p>
+                <p>{{exam.total_question}} questions</p>
             </div>
             <a href="preview/{{exam.id}}"><input type="submit" class="preview" value="Preview Exam"></a>
         </div>
@@ -33,27 +34,12 @@
     <h1 class="top">There is no Available Tests for your class</h1>
     {% endif %}
     <footer>
-        <div class="footer">
+        <!--<div class="footer">
             <div class="foot-left">
                 <img src="{% static 'images/Lajfort-logo.png' %}" class="foot-logo" alt="">
             </div>
-            <div class="foot-right">
-                <div class="foot-quick">
-                    <a class="foot-link">Quick Links</a>
-                    <h5>Contact Us</h5>
-                    <h5>About Us</h5>
-                </div>
-                <div class="foot-quick">
-                    <a class="foot-link">Others</a>
-                    <h5>User FAQs</h5>
-                    <h5>Contact Us</h5>
-                    <h5>Legal</h5>
-                    <h5>Privacy Policy</h5>
-                    <h5>Terms and Conditions</h5>
-                </div>
-            </div>
         </div>
-        <hr>
+        <hr>-->
         <div class="copyright">
             <h4>Copyright &copy; 2024.All rights reservered.</h4>
             <div>

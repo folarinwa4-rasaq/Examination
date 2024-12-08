@@ -1,0 +1,73 @@
+#header {
+    background: rgba(255, 253, 199, 1);
+    color: black;
+}
+
+h1 {
+    color: black;
+}
+
+#header a:link,
+#header a:visited,
+#logout-form button {
+    color: black;
+}
+
+.main {
+    background: rgba(41, 22, 110, 1);
+}
+
+.main h1 {
+    color: white;
+}
+
+.module caption {
+    background: rgba(255, 253, 199, 1);
+    color: black;
+}
+
+a.section:visited {
+    color: black;
+}
+
+a:link,
+a:visited {
+    color: rgba(255, 253, 199, 1);
+}
+
+.model-group {
+    display: none;
+}
+
+input[type=submit],
+.submit-row input {
+    background: rgba(255, 253, 199, 1);
+    width: 100px;
+    color: black;
+}
+
+input[type=submit].default,
+.submit-row input.default {
+    background: rgba(255, 253, 199, 1);
+    color: black;
+    width: 200px;
+}
+
+div.breadcrumbs {
+    background: rgba(255, 253, 199, 1);
+    color: black;
+}
+
+div.breadcrumbs a {
+    color: gray;
+}
+
+html[data-theme="auto"] .theme-toggle svg.theme-icon-when-auto {
+    display: none;
+}
+
+a.section:link,
+a.section:visited {
+    color: black;
+    text-decoration: none;
+}

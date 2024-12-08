@@ -48,13 +48,19 @@ class Student(models.Model):
     clas = models.CharField(max_length=50,choices=CLASS_CHIOCE)
     student = models.ForeignKey(User,on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.student.username + ' ' + self.clas
+
 class Exam(models.Model):
-    subject = models.CharField(max_length=200,choices=SUBJEECT_CHOICES)
-    description = models.TextField()
-    title = models.CharField(max_length=250)
-    duration = models.IntegerField(default=120)
+    subject = models.CharField(max_length=50,choices=SUBJEECT_CHOICES)
+    description = models.TextField(max_length=125)
+    title = models.CharField(max_length=50)
+    duration = models.FloatField(default=120)
     total_question = models.IntegerField(default=60)
     clas = models.CharField(max_length=200,choices=CLASS_CHIOCE)
+
+    def __str__(self):
+        return self.clas + ' ' + self.title
 
 class Question(models.Model):
     question = models.TextField()
@@ -66,7 +72,13 @@ class Question(models.Model):
     subject = models.CharField(max_length=1000000,choices=SUBJEECT_CHOICES)
     exam = models.ForeignKey(Exam,on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.exam.clas + ' ' +  self.exam.title
+
 class Result(models.Model):
     student = models.ForeignKey(User,on_delete=models.CASCADE)
     exam = models.ForeignKey(Exam,on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.student.username #+ ' ' , self.score

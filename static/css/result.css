@@ -32,4 +32,43 @@ table {
     padding: 10px;
     margin-bottom: -500px;
     margin-top: 20px;
+    cursor: pointer;
+}
+
+.end-exam:hover {
+    opacity: 0.8;
+}
+
+.end-exam:active {
+    opacity: 0.6;
+}
+
+@media (min-width:1440px) {
+    table,
+    td,
+    tr {
+        width: 950px;
+    }
+    table {
+        margin-left: 280px;
+    }
+}
+
+@media (min-width:768px) and (max-width:1023px) {
+    table,
+    td,
+    tr {
+        width: 450px;
+    }
+}
+
+@media (max-width:767px) {
+    table,
+    td,
+    tr {
+        width: 250px;
+    }
+    table {
+        margin-left: 80px;
+    }
 }

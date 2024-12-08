@@ -21,49 +21,35 @@
         </nav>
     </header>
     <main class="exam">
-        <ol>
-            {% for q in question %}
+        {% for q in exam_p %}
+        <hr>
+        <form action="" name="exam-form" method="post">
+            {% csrf_token %}
+            <div class="e-div">
+                <p class="qst">{{q.question}}</p>
+                <input type="hidden" name="answer" class="answer" value="{{q.solution}}">
+                <input type="hidden" name="score" class="score" value="">
+                <h4 class="opt"><input type="checkbox" value="{{q.option1}}" class="input">A.{{q.option1}} </h4>
+                <h4 class="opt"><input type="checkbox" value="{{q.option2}}" class="input">B.{{q.option2}} </h4>
+                <h4 class="opt"><input type="checkbox" value="{{q.option3}}" class="input">C.{{q.option3}} </h4>
+                <h4 class="opt"><input type="checkbox" value="{{q.option4}}" class="input">D.{{q.option4}} </h4>
+            </div>
+            {% endfor %} {% if exam_p.has_previous %}
+            <a href="?page={{exam_p.previous_page_number}}" id="previous" class="previous">Previous</a> {% endif %} {% if exam_p.has_next %}
+            <a href="?page={{exam_p.next_page_number}}" id="next" class="next" onclick="getAnswer();">Next</a>{% else %}
+            <input type="submit" id="next" class="next js-finish" onclick="getAnswer();
+            localStorage.removeItem('score');
+            " value="Finish"> {% endif %}
+            <br><br>
             <hr>
-            <form action="" name="exam-form" method="post">
-                {% csrf_token %}
-                <div>
-                    <li class="qst">{{q.question}}</li>
-                    <input type="hidden" name="answer" class="answer" value="{{q.solution}}">
-                    <h4 class="opt"><input type="checkbox" name="opt" value="{{q.option1}}" id="input"> {{q.option1}} </h4>
-                    <h4 class="opt"><input type="checkbox" name="opt" value="{{q.option2}}" id="input"> {{q.option2}} </h4>
-                    <h4 class="opt"><input type="checkbox" name="opt" value="{{q.option3}}" id="input"> {{q.option3}} </h4>
-                    <h4 class="opt"><input type="checkbox" name="opt" value="{{q.option4}}" id="input"> {{q.option4}} </h4>
-                </div>
-                {% endfor %}
-                <hr>
-                <div class="end">
-                    <a href=""><input type="submit" class="end-exam" value="Submit Exam"></a>
-                </div>
-            </form>
-        </ol>
+            <div class="end">
+                <input type="submit" class="end-exam js-finish" onclick="getAnswer();
+                localStorage.removeItem('score');
+                " value="Submit Exam">
+            </div>
+        </form>
     </main>
     <footer>
-        <div class="footer">
-            <div class="foot-left">
-                <img src="{% static 'images/Lajfort-logo.png' %}" class="foot-logo" alt="">
-            </div>
-            <div class="foot-right">
-                <div class="foot-quick">
-                    <a class="foot-link">Quick Links</a>
-                    <h5>Contact Us</h5>
-                    <h5>About Us</h5>
-                </div>
-                <div class="foot-quick">
-                    <a class="foot-link">Others</a>
-                    <h5>User FAQs</h5>
-                    <h5>Contact Us</h5>
-                    <h5>Legal</h5>
-                    <h5>Privacy Policy</h5>
-                    <h5>Terms and Conditions</h5>
-                </div>
-            </div>
-        </div>
-        <hr>
         <div class="copyright">
             <h4>Copyright &copy; 2024.All rights reservered.</h4>
             <div>
@@ -76,7 +62,6 @@
     </footer>
     <script>
         const endTime = new Date("{{ end_time }}").getTime();
-
         const x = setInterval(function() {
             const now = new Date().getTime();
             const distance = endTime - now;
@@ -90,10 +75,59 @@
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("timer").innerHTML = "EXAM OVER";
+                window.location.href = "result/{{exam.id}}"
                 document.getElementById("exam-form").submit();
-                redirectUrl = "preview/examination/result/{{exam.id}}"
             }
         }, 1000);
+
+
+        function getAnswer() {
+            let defaultScore = 0;
+            let storedScore = localStorage.getItem('score')
+            const correctAnswerElement = document.querySelector('.answer').value;
+            const answers = document.querySelectorAll('.input');
+            const checkedBoxes = Array.from(answers).filter(checkbox => checkbox.checked);
+            const pickedAnswer = checkedBoxes.map(checkbox => checkbox.value);
+            pickedAnswer.forEach(answer => {
+                if (answer === correctAnswerElement) {
+                    if (storedScore === null) {
+                        defaultScore++;
+                        localStorage.setItem('score', defaultScore);
+                        let score = document.querySelector('.score');
+                        score.value = storedScore;
+                    } else {
+                        defaultScore = parseInt(storedScore);
+                        defaultScore++;
+                        localStorage.setItem('score', defaultScore);
+                        let score = document.querySelector('.score');
+                        score.value = storedScore;
+                    };
+                };
+            });
+        };
+
+        document.querySelectorAll('.js-finish').addEventListener('click', () => {
+            localStorage.removeItem('score');
+        });
+
+        const form = document.querySelector('.exam-form');
+        const scoreInput = document.querySelector('.score');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const score = scoreInput.value;
+            const formData = new FormData(form);
+            formData.append('score', score);
+
+            fetch('preview/examination/{{exam.id}}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                })
+                .then((data) => data);
+        });
     </script>
 </body>
 
